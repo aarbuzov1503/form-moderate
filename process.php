@@ -38,14 +38,45 @@ if(isset($_FILES['image2']) && $_FILES['image2']['error'] === UPLOAD_ERR_OK) {
 }
 
 // Вставка данных в таблицу базы данных
-$sql = "INSERT INTO your_table_name (name, description, price, date_range, date_time, fullname, image1, image2)
+$sql = "INSERT INTO moderate (name, description, price, date_range, date_time, fullname, image1, image2)
         VALUES ('$name', '$description', '$price', '$dateRange', '$dateTime', '$fullname', '$image1Path', '$image2Path')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Форма успешно доставлена, эту вкладку можно закрыть";
+
+      ?>    
+        
+        <?php
+    $timer = 5; // начальное значение таймера
+?>
+
+<p style="font-size:32px;">Форма успешно доставлена. Через <span id="timer"><?php echo $timer; ?></span> секунд будет произведено перенаправление на страницу статуса</p>
+
+<script>
+  var timer = <?php echo $timer; ?>;
+  var timerElement = document.getElementById('timer'); // элемент, содержащий значение таймера
+
+  function countdown() {
+    timer--;
+
+    // обновляем значение таймера на странице
+    timerElement.textContent = timer;
+
+    if (timer <= 0) {
+      window.location = 'https://app.aprogger.ru/moderate-app/access/send.php'; // перенаправляем на страницу регистрации пользователей
+    } else {
+      setTimeout(countdown, 1000); // обновляем таймер каждую секунду
+    }
+  }
+
+  // запускаем таймер при загрузке страницы
+  setTimeout(countdown, 1000);
+</script>
+
+<?php
     
 } else {
-    echo "Ошибка при добавлении данных сообщите администратору: " . $conn->error;
+    echo "Ошибка при добавлении данных сообщите администратору:aprogger@mail.ru " . $conn->error;
 }
 
 $conn->close();
