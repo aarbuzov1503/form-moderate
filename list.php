@@ -1,13 +1,13 @@
 <?
 // Подключение к базе данных MySQL
 $servername = "localhost";
-$username = "_text";
-$password = "_text_pass";
-$dbname = "_text";
+$username = "";
+$password = "";
+$dbname = "";
 
-    $dbname = '_text';
-    $dbuser = '_text';
-    $dbpass = '_text_pass';
+    $dbname = '';
+    $dbuser = '';
+    $dbpass = '';
 
     $pdo = new PDO("mysql:host=localhost;dbname=$dbname", $dbuser, $dbpass);
     $stmt = $pdo->query('SELECT * FROM your_table_name ORDER BY id DESC');
@@ -72,9 +72,9 @@ $dbname = "_text";
         <section>
         	<?
 
-    $dbname = '_verstak';
-    $dbuser = '_verstak';
-    $dbpass = '_verstakPass';
+    $dbname = '';
+    $dbuser = '';
+    $dbpass = '';
 
     $pdo = new PDO("mysql:host=localhost;dbname=$dbname", $dbuser, $dbpass);
     $stmt = $pdo->query('SELECT * FROM orders ORDER BY id DESC');
